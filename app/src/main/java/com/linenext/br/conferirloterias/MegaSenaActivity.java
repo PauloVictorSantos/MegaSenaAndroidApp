@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class MegaSenaActivity extends Activity {
         setContentView(R.layout.activity_main);
         contactList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
-        textConcurso = findViewById(R.id.)
+
 
         new MegaSenaTask().execute();
 
