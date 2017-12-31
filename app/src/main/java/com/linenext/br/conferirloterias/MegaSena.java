@@ -1,6 +1,9 @@
 package com.linenext.br.conferirloterias;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -8,23 +11,28 @@ import java.util.Date;
  * Created by Paulo Victor on 18/12/2017.
  */
 
-public class MegaSena implements Serializable{
-    static final long serialVersionUID = 42L;
+public class MegaSena{
+
 
     private int numero;
     private Date data;
     private int sorteio[]=new int[5];
     private int ganhadores[]= new int[5];
     private Double rateio []= new Double[5];
-    private boolean acumulado;
-    private Double valor_acumulado;
-    private String Cidades;
-    private Double proxima_estimativa;
-    private Date proxima_data;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    @SerializedName("acumulado")
+    private String acumulado;
+
+
+    private String  valor_acumulado;
+
+    private String cidades[]= new String[5];
+
+    @SerializedName("proximo_estimativa")
+    private BigDecimal proxima_estimativa;
+
+    @SerializedName("proximo_data")
+    private Date proxima_data;
 
     public int getNumero() {
         return numero;
@@ -66,35 +74,33 @@ public class MegaSena implements Serializable{
         this.rateio = rateio;
     }
 
-    public boolean isAcumulado() {
-        return acumulado;
-    }
+    public String getAcumulado() { return acumulado; }
 
-    public void setAcumulado(boolean acumulado) {
+    public void setAcumulado(String acumulado) {
         this.acumulado = acumulado;
     }
 
-    public Double getValor_acumulado() {
+    public String getValor_acumulado() {
         return valor_acumulado;
     }
 
-    public void setValor_acumulado(Double valor_acumulado) {
+    public void setValor_acumulado(String  valor_acumulado) {
         this.valor_acumulado = valor_acumulado;
     }
 
-    public String getCidades() {
-        return Cidades;
+    public String[] getCidades() {
+        return cidades;
     }
 
-    public void setCidades(String cidades) {
-        Cidades = cidades;
+    public void setCidades(String[] cidades) {
+        this.cidades = cidades;
     }
 
-    public Double getProxima_estimativa() {
+    public BigDecimal getProxima_estimativa() {
         return proxima_estimativa;
     }
 
-    public void setProxima_estimativa(Double proxima_estimativa) {
+    public void setProxima_estimativa(BigDecimal proxima_estimativa) {
         this.proxima_estimativa = proxima_estimativa;
     }
 
@@ -104,21 +110,5 @@ public class MegaSena implements Serializable{
 
     public void setProxima_data(Date proxima_data) {
         this.proxima_data = proxima_data;
-    }
-
-    @Override
-    public String toString() {
-        return "MegaSena{" +
-                "numero=" + numero +
-                ", data=" + data +
-                ", sorteio=" + Arrays.toString(sorteio) +
-                ", ganhadores=" + Arrays.toString(ganhadores) +
-                ", rateio=" + Arrays.toString(rateio) +
-                ", acumulado=" + acumulado +
-                ", valor acumulado=" + valor_acumulado +
-                ", Cidades='" + Cidades + '\'' +
-                ", proxima estimativa=" + proxima_estimativa +
-                ", proxima data=" + proxima_data +
-                '}';
     }
 }

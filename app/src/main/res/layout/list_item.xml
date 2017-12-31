@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        android:textColor="#0066b3"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/label_conc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/concurso"
+            android:textColor="#4c556c"
+            android:textSize="18sp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/numero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#209869"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/colorAccent"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/acumulado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0066b3"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/acumul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_estimativa"
+            android:textColor="#0066b3"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/real"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/real"
+            android:textColor="#5d5d5d"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/proxima_estimativa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#5d5d5d"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/sorteio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#209869"
+        android:textStyle="bold"
+        android:textSize="24sp"
+         />
+
+    <TextView
+        android:id="@+id/premicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/premiacao"
+        android:textColor="#0066b3"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/label_sena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7f8182"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:text="@string/label_sena"
+        />
+    <TextView
+        android:id="@+id/sena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7f8182"
+        android:textSize="14sp"
+        />
+    <TextView
+        android:id="@+id/label_quina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_quina"
+        android:textColor="#7f8182"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/quina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7f8182"
+        android:textSize="14sp"
+        />
+    <TextView
+        android:id="@+id/label_quadra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7f8182"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:text="@string/label_quadra"
+        />
+    <TextView
+    android:id="@+id/quadra"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#7f8182"
+    android:textSize="14sp"
+    />
+
+    <TextView
+        android:id="@+id/label_valor_acumulado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_acumulado"
+        android:textColor="#5d5d5d"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/label_real_acumulado_proximo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/real"
+            android:textColor="#5d5d5d"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/valor_acumulado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#5d5d5d"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cidades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#5d5d5d"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/label_proxima_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/proxima_data"
+        android:textColor="#5d5d5d"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/proxima_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#5d5d5d"
+        android:textStyle="bold"
+        />
+
+
+
+
+</LinearLayout>

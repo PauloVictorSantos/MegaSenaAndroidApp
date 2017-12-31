@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Conferir Loterias</string>
+    <string name="result">Resultado</string>
+    <string name="concurso">Concurso:</string>
+    <string name="text_estimativa">Estimativa de prêmio do próximo concurso</string>
+    <string name="real">R$</string>
+    <string name="premiacao">Premiação</string>
+    <string name="label_sena">Sena - 6 números acertados</string>
+    <string name="label_quina">Quina - 5 números acertados</string>
+    <string name="label_quadra">Quadra - 4 números acertados</string>
+    <string name="valor_acumulado">Acumulado próximo concurso</string>
+    <string name="proxima_data">Data do próximo concurso</string>
+    <string name="label_numero_concurso">Número do concurso</string>
+    <string name="label_button">Pesquisar</string>
+    <string name="title_activity_mega_sena_busca">MegaSenaBusca</string>
 </resources>
