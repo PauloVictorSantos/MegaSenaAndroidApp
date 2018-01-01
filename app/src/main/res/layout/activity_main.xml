@@ -8,6 +8,18 @@
     android:weightSum="1"
     tools:context="com.linenext.br.conferirloterias.MegaSenaActivity">
 
+    <EditText
+        android:id="@+id/pesquisar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_numero_concurso" />
+
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnBuscar" />
+
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"

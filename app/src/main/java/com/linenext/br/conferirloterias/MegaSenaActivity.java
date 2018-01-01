@@ -1,10 +1,13 @@
 package com.linenext.br.conferirloterias;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,18 +37,28 @@ import java.util.concurrent.ExecutionException;
 public class MegaSenaActivity extends Activity {
     ArrayList<HashMap<String, String>> contactList;
     private ListView lv;
-    private SearchView textConcurso;
-
-
+    private EditText filterText;
+    private SimpleAdapter adapter;
+    private Button btnPesquisa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         contactList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
-
-
+        filterText =(EditText) findViewById(R.id.pesquisar);
+        btnPesquisa= (Button) findViewById(R.id.btnBuscar);
         new MegaSenaTask().execute();
+
+        btnPesquisa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contactList.clear();
+                adapter.notifyDataSetChanged();
+                new MegaSenaTask().execute();
+
+            }
+        });
 
     }
 
@@ -53,12 +66,17 @@ public class MegaSenaActivity extends Activity {
 
     public class MegaSenaTask extends AsyncTask<Object,Object,MegaSena> {
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
 
         protected MegaSena doInBackground(Object... param){
             StringBuilder resposta= new StringBuilder();
             try{
 
-                URL url = new URL("https://www.lotodicas.com.br/api/mega-sena");
+                URL url = new URL("https://www.lotodicas.com.br/api/mega-sena/"+filterText.getText());
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
@@ -79,11 +97,7 @@ public class MegaSenaActivity extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
               return new Gson().fromJson(resposta.toString(), MegaSena.class);
-
-
         }
 
         @Override
@@ -105,7 +119,7 @@ public class MegaSenaActivity extends Activity {
 
             contactList.add(contact);
 
-            ListAdapter adapter = new SimpleAdapter(
+            adapter = new SimpleAdapter(
                     MegaSenaActivity.this, contactList,
                     R.layout.list_item, new String[]{
                     "numero", "data", "sorteio","sena","quina","quadra","acumulado",

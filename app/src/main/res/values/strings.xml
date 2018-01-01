@@ -13,4 +13,6 @@
     <string name="label_numero_concurso">Número do concurso</string>
     <string name="label_button">Pesquisar</string>
     <string name="title_activity_mega_sena_busca">MegaSenaBusca</string>
+    <string name="btnBuscar">Pesquisar</string>
+    <string name="hint_numero_concurso">Número Concurso</string>
 </resources>
