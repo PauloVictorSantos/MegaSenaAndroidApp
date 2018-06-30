@@ -1,38 +1,31 @@
 package com.linenext.br.conferirloterias;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class MegaSenaActivity extends Activity {
     ArrayList<HashMap<String, String>> contactList;
@@ -40,6 +33,7 @@ public class MegaSenaActivity extends Activity {
     private EditText filterText;
     private SimpleAdapter adapter;
     private Button btnPesquisa;
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +42,14 @@ public class MegaSenaActivity extends Activity {
         lv = (ListView) findViewById(R.id.list);
         filterText =(EditText) findViewById(R.id.pesquisar);
         btnPesquisa= (Button) findViewById(R.id.btnBuscar);
-        new MegaSenaTask().execute();
+        filterText.setText("");
+
+        if(isOnline()){
+            new MegaSenaTask().execute();
+        }else{
+            Toast.makeText(this, R.string.connectivity_service, Toast.LENGTH_LONG).show();
+            btnPesquisa.setEnabled(false);
+        }
 
         btnPesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,18 +60,22 @@ public class MegaSenaActivity extends Activity {
 
             }
         });
-
+        MobileAds.initialize(this, "ca-app-pub-7016423715131781/7580221755");
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
+    public boolean isOnline() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        return manager.getActiveNetworkInfo() != null &&
+                manager.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
 
     public class MegaSenaTask extends AsyncTask<Object,Object,MegaSena> {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
 
-        }
 
         protected MegaSena doInBackground(Object... param){
             StringBuilder resposta= new StringBuilder();
@@ -94,7 +99,9 @@ public class MegaSenaActivity extends Activity {
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }catch (IOException e ){
                 e.printStackTrace();
             }
               return new Gson().fromJson(resposta.toString(), MegaSena.class);
@@ -123,8 +130,8 @@ public class MegaSenaActivity extends Activity {
                     MegaSenaActivity.this, contactList,
                     R.layout.list_item, new String[]{
                     "numero", "data", "sorteio","sena","quina","quadra","acumulado",
-                    "valor_acumulado","cidades","proxima_estimativa","proxima_data"},
-                    new int[]{R.id.numero, R.id.data, R.id.sorteio,R.id.sena,R.id.quina,R.id.quadra, R.id.acumulado,R.id.valor_acumulado, R.id.cidades, R.id.proxima_estimativa,R.id.proxima_data});
+                    "valor_acumulado","proxima_estimativa","proxima_data"},
+                    new int[]{R.id.numero, R.id.data, R.id.sorteio,R.id.sena,R.id.quina,R.id.quadra, R.id.acumulado,R.id.valor_acumulado, R.id.proxima_estimativa,R.id.proxima_data});
 
             lv.setAdapter(adapter);
         }
